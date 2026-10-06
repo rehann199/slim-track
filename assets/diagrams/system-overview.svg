@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="t d">
+  <title id="t">Slim Track system overview</title>
+  <desc id="d">A Flutter app with Riverpod state and repositories writes to a local SQLite database first. Signed-in users also back up to Firestore. A serverless proxy on Cloudflare Workers verifies the user's identity token and subscription entitlement, applies usage limits and forwards weekly insight requests to a third-party language-model API. The app also talks to store billing, an ad mediation SDK and Firebase analytics services.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; fill: #e8f5ec; }
+      .h { font-size: 26px; font-weight: 700; }
+      .s { font-size: 15px; fill: #9fc9ad; }
+      .b { font-size: 16px; }
+      .m { font-size: 14px; fill: #b7dcc3; }
+      .k { font-size: 13px; fill: #7fd49b; letter-spacing: 1.5px; font-weight: 700; }
+      .app   { fill: #123a2a; stroke: #3fbf7a; stroke-width: 2; }
+      .local { fill: #0f3d38; stroke: #2fbfae; stroke-width: 2; }
+      .cloud { fill: #1a2a3a; stroke: #4a8fc1; stroke-width: 1.5; }
+      .edge  { fill: #2a2a14; stroke: #c9b24a; stroke-width: 1.5; }
+      .ext   { fill: #241a2e; stroke: #9a6fc1; stroke-width: 1.5; }
+      .arrow { stroke: #3fbf7a; stroke-width: 2.5; fill: none; marker-end: url(#a); }
+      .dash  { stroke: #4a8fc1; stroke-width: 2; fill: none; stroke-dasharray: 6 5; marker-end: url(#c); }
+    </style>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#3fbf7a"/>
+    </marker>
+    <marker id="c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#4a8fc1"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="600" rx="16" fill="#0c1a12"/>
+  <text x="40" y="50" class="h">Local-first app with a thin serverless edge</text>
+  <text x="40" y="76" class="s">The device is the working store. Cloud services are optional or feature-specific.</text>
+
+  <rect x="40" y="110" width="400" height="300" rx="12" class="app"/>
+  <text x="58" y="138" class="k">FLUTTER APP (ANDROID + IOS)</text>
+  <text x="58" y="170" class="b">Screens and go_router navigation</text>
+  <text x="58" y="198" class="b">Riverpod state and derived statistics</text>
+  <text x="58" y="226" class="b">Pure calculation utilities (BMI, units)</text>
+  <text x="58" y="254" class="b">Repositories (weights, profile, insights)</text>
+  <text x="58" y="282" class="b">Reminders (local notifications)</text>
+  <text x="58" y="310" class="b">Export (CSV, PDF) and photo journal</text>
+  <text x="58" y="338" class="b">Billing client for the store</text>
+  <text x="58" y="366" class="b">Ad mediation (free tier, remotely gated)</text>
+  <text x="58" y="394" class="m">Analytics use counts and buckets, not raw values</text>
+
+  <rect x="500" y="110" width="280" height="130" rx="12" class="local"/>
+  <text x="518" y="138" class="k">ON DEVICE</text>
+  <text x="518" y="170" class="b">SQLite: weights, profile, notes</text>
+  <text x="518" y="196" class="m">Written first; works offline</text>
+  <text x="518" y="218" class="m">Photos stay on the device</text>
+
+  <rect x="500" y="280" width="280" height="130" rx="12" class="cloud"/>
+  <text x="518" y="308" class="k">FIREBASE</text>
+  <text x="518" y="340" class="b">Auth (Google, Apple)</text>
+  <text x="518" y="366" class="b">Firestore backup (signed in)</text>
+  <text x="518" y="392" class="b">Analytics, Crashlytics, Push</text>
+
+  <rect x="840" y="110" width="320" height="300" rx="12" class="edge"/>
+  <text x="858" y="138" class="k">SERVERLESS PROXY</text>
+  <text x="858" y="170" class="b">1. Verify the user's Firebase token</text>
+  <text x="858" y="198" class="b">2. Check subscription entitlement</text>
+  <text x="858" y="226" class="b">3. Apply rate and usage limits</text>
+  <text x="858" y="254" class="b">4. Forward the request upstream</text>
+  <text x="858" y="294" class="b">Also verifies store purchase</text>
+  <text x="858" y="320" class="b">receipts and records entitlement</text>
+  <text x="858" y="352" class="m">Runs on Cloudflare Workers</text>
+  <text x="858" y="372" class="m">No provider key in the app</text>
+  <text x="858" y="392" class="m">Small key-value store for counters</text>
+
+  <rect x="840" y="450" width="320" height="110" rx="12" class="ext"/>
+  <text x="858" y="478" class="k">THIRD PARTY</text>
+  <text x="858" y="508" class="b">Language-model API</text>
+  <text x="858" y="534" class="m">Weekly Pro insight text only</text>
+
+  <rect x="40" y="450" width="740" height="110" rx="12" class="ext"/>
+  <text x="58" y="478" class="k">PLATFORM SERVICES</text>
+  <text x="58" y="508" class="b">Google Play Billing and StoreKit: subscription purchase and restore</text>
+  <text x="58" y="534" class="b">Ad mediation networks: free tier only; Pro users see no ads</text>
+
+  <path d="M440 175 H496" class="arrow"/>
+  <path d="M440 330 H496" class="dash"/>
+  <path d="M240 410 V446" class="arrow"/>
+  <path d="M1000 410 V446" class="arrow"/>
+  <path d="M240 110 V94 H1000 V106" class="arrow"/>
+</svg>

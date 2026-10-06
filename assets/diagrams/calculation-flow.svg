@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="t d">
+  <title id="t">Slim Track calculation flow</title>
+  <desc id="d">Weight in kilograms or pounds and height in centimetres or feet and inches are normalised to canonical kilograms and centimetres, used to compute an unrounded BMI, classified into four bands by comparing the unrounded value to fixed cut-offs, and only then rounded for display, goal progress, trend and weekly rate presentation. The canonical values are persisted in a local SQLite database and optionally backed up to Firestore.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; fill: #e8f5ec; }
+      .h { font-size: 26px; font-weight: 700; }
+      .s { font-size: 15px; fill: #9fc9ad; }
+      .b { font-size: 16px; }
+      .m { font-size: 14px; fill: #b7dcc3; }
+      .k { font-size: 13px; fill: #7fd49b; letter-spacing: 1.5px; font-weight: 700; }
+      .in   { fill: #152a1f; stroke: #2f6b49; stroke-width: 1.5; }
+      .norm { fill: #123a2a; stroke: #3fbf7a; stroke-width: 2; }
+      .core { fill: #0f3d38; stroke: #2fbfae; stroke-width: 2; }
+      .out  { fill: #1c3320; stroke: #7fbf4a; stroke-width: 1.5; }
+      .side { fill: #1a2a3a; stroke: #4a8fc1; stroke-width: 1.5; }
+      .note { fill: #2a2a14; stroke: #c9b24a; stroke-width: 1.5; }
+      .arrow { stroke: #3fbf7a; stroke-width: 2.5; fill: none; marker-end: url(#a); }
+      .dash  { stroke: #4a8fc1; stroke-width: 2; fill: none; stroke-dasharray: 6 5; marker-end: url(#c); }
+    </style>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#3fbf7a"/>
+    </marker>
+    <marker id="c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#4a8fc1"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="620" rx="16" fill="#0c1a12"/>
+  <text x="40" y="50" class="h">From input to presentation: one canonical unit, one rounding step</text>
+  <text x="40" y="76" class="s">Rounding happens only at the display edge. Classification and arithmetic use the full-precision value.</text>
+
+  <rect x="40" y="110" width="230" height="200" rx="12" class="in"/>
+  <text x="58" y="138" class="k">1  INPUT</text>
+  <text x="58" y="168" class="b">Weight: kg or lb</text>
+  <text x="58" y="194" class="b">Height: cm or ft + in</text>
+  <text x="58" y="226" class="m">One decimal in the user's</text>
+  <text x="58" y="246" class="m">display unit; range-checked</text>
+  <text x="58" y="266" class="m">before it is accepted</text>
+
+  <rect x="320" y="110" width="230" height="200" rx="12" class="norm"/>
+  <text x="338" y="138" class="k">2  NORMALISE</text>
+  <text x="338" y="168" class="b">Weight to kilograms</text>
+  <text x="338" y="194" class="b">Height to centimetres</text>
+  <text x="338" y="226" class="m">Fixed conversion factors,</text>
+  <text x="338" y="246" class="m">full double precision,</text>
+  <text x="338" y="266" class="m">no intermediate rounding</text>
+
+  <rect x="600" y="110" width="230" height="200" rx="12" class="core"/>
+  <text x="618" y="138" class="k">3  BMI</text>
+  <text x="618" y="168" class="b">kg / (height in m)^2</text>
+  <text x="618" y="194" class="b">Unrounded value</text>
+  <text x="618" y="226" class="m">Same formula for metric</text>
+  <text x="618" y="246" class="m">and imperial users; latest</text>
+  <text x="618" y="266" class="m">entry and profile height</text>
+
+  <rect x="880" y="110" width="280" height="180" rx="12" class="core"/>
+  <text x="898" y="138" class="k">4  CATEGORY</text>
+  <text x="898" y="168" class="b">Four adult bands</text>
+  <text x="898" y="194" class="b">Cut-offs 18.5 / 25.0 / 30.0</text>
+  <text x="898" y="226" class="m">Compared on the unrounded</text>
+  <text x="898" y="246" class="m">value: a BMI that displays as</text>
+  <text x="898" y="266" class="m">25.0 can still be in the lower band</text>
+
+  <path d="M270 200 H316" class="arrow"/>
+  <path d="M550 200 H596" class="arrow"/>
+  <path d="M830 200 H876" class="arrow"/>
+  <path d="M1020 290 V446" class="arrow"/>
+  <path d="M435 290 V326" class="dash"/>
+  <path d="M550 368 H596" class="dash"/>
+
+  <rect x="40" y="330" width="510" height="90" rx="12" class="side"/>
+  <text x="58" y="356" class="k">PERSISTENCE (SIDE PATH)</text>
+  <text x="58" y="382" class="b">Local SQLite stores canonical kg and cm.</text>
+  <text x="58" y="406" class="m">Unit choice is only a display preference.</text>
+  <rect x="600" y="330" width="360" height="90" rx="12" class="side"/>
+  <text x="618" y="356" class="k">OPTIONAL CLOUD BACKUP</text>
+  <text x="618" y="382" class="b">Signed-in users: Firestore copy,</text>
+  <text x="618" y="406" class="m">merged by date; photos stay on device.</text>
+
+  <rect x="40" y="450" width="1120" height="140" rx="12" class="out"/>
+  <text x="58" y="478" class="k">5  PRESENTATION (ROUNDING APPLIED HERE, FOR DISPLAY ONLY)</text>
+  <text x="58" y="512" class="b">BMI and weights shown to one decimal</text>
+  <text x="58" y="538" class="b">Goal progress: start-to-goal share, clamped 0..100%</text>
+  <text x="58" y="564" class="b">Weekly rate: whole-history average slope</text>
+  <text x="620" y="512" class="b">Pro linear trend line over visible entries</text>
+  <text x="620" y="538" class="b">Straight-line goal-date estimate</text>
+  <text x="620" y="564" class="b">Reference range: from BMI 18.5 and 24.9</text>
+</svg>
