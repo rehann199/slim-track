@@ -15,6 +15,7 @@ Flutter · Dart · Riverpod · SQLite · Firebase · Cloudflare Workers
 ![SQLite](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white)
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=black)
 ![Cloudflare Workers](https://img.shields.io/badge/Cloudflare%20Workers-F38020?logo=cloudflare&logoColor=white)
+![For sale](https://img.shields.io/badge/Product-For%20sale-7C4DFF)
 
 <table>
   <tr>
@@ -43,6 +44,14 @@ Slim Track is a **weight-logging and BMI-tracking tool**. You record a weight, s
 The app itself says so on its BMI detail screen (BMI is a screening tool and does not diagnose body fatness or health) and on its About BMI screen, which lists the metric's limitations and lists public health sources, with a note that the content is for general information only.
 
 It does not calculate calories, BMR or TDEE, does not track activity or body measurements, does not integrate with HealthKit or Health Connect, does not use gender in any calculation, and makes no claim about a safe or recommended rate of change.
+
+<!-- fw-sale:start -->
+## Reach & Availability
+
+| | |
+|---|---|
+| **Product sale** | This is a Future Watch product and it is **available to buy or license** for your own business. [Ask about buying Slim Track](https://futurewatch.co/contact?type=product&ref=slimtrack) or email [rehan@futurewatch.co](mailto:rehan@futurewatch.co). |
+<!-- fw-sale:end -->
 
 ## Product at a Glance
 
